@@ -1,0 +1,17 @@
+from collections import deque
+
+n = int(input())
+
+cards  = deque()
+
+for i in range(1, n+1) : 
+    cards.append(i)
+
+while True :
+    if len(cards) == 1 :
+        break;
+    cards.popleft()
+    cards.append(cards.popleft())
+     
+print(cards[0])
+    
