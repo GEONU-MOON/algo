@@ -1,31 +1,32 @@
-from collections import deque
 import sys
+from collections import deque
 
-input = sys.stdin.readline
+n = int(sys.stdin.readline())
+q = deque()
 
-n = int(input())
-
-s = deque()
-
-for i in range(n) :
-    input_str = input().split()
-    if input_str[0] == 'push' :
-        s.append(input_str[1])
-    elif input_str[0] == 'pop' :
-        if not s :
+for _ in range(n) :
+    s = sys.stdin.readline().split()
+    if s[0] == 'push' :
+        q.append(s[1])
+    elif s[0] == 'pop' :
+        if q :
+            a = q.popleft()
+            print(a)
+        else : 
             print('-1')
-        else : print(s.popleft())
-    elif input_str[0] == 'size' :
-        print(int(len(s)))
-    elif input_str[0] == 'empty' :
-        if not s : 
+    elif s[0] == 'size' :
+        print(len(q))
+    elif s[0] == 'empty' :
+        if not q :
             print('1')
-        else : print('0')   
-    elif input_str[0] == 'front' :
-        if not s : 
+        else : 
+            print('0')
+    elif s[0] == 'front' :
+        if not q : 
             print('-1')
-        else : print(s[0])
-    elif input_str[0]  == 'back' :
-        if not s :
+        else : print(q[0])
+    elif s[0] == 'back' :
+        if not q : 
             print('-1')
-        else : print(s[len(s)-1])
+        else :
+            print(q[-1])
